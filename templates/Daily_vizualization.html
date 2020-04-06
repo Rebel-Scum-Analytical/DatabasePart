@@ -1,48 +1,10 @@
-<!DOCTYPE html>
 
-<html lang="zxx"></html>
-<head>
-  <title>Nutrometer</title>
-  <meta charset="UTF-8">
-  <!-- <meta name="description" content="Gutim Template"> -->
-  <!-- <meta name="keywords" content="Gutim, unica, creative, html"> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/owl.carousel.min.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/magnific-popup.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/slicknav.min.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/style.css" type="text/css">
-  <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/slate/bootstrap.min.css>
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="css/style.css" type="text/css" /> -->
-</head>
-<body>
-  <header class="header-section">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="../static/images/Nutrometer.png"></img>
-            </a>
-        </div>
-        <div class="nav-menu">
-          <nav class="mainmenu mobile-menu">
-              <ul>
-                  <li class="active"><a href="./index.html">Home</a></li>
-                  <li><a href="./about-us.html">About</a></li>
-                  <!-- <li><a href="./classes.html">Classes</a></li> -->
-                  <!-- <li><a href="./blog.html">Blog</a></li> -->
-                  <!-- <li><a href="./gallery.html">Gallery</a></li> -->
-                  <li><a href="./contact.html">Contacts</a></li>
-              </ul>
-            </nav>
-          <a href="./user_metrics.html" class="primary-btn signup-btn">Enter Food Intake</a>
-          <!-- <a href="./Login.html" class="primary-btn signup-btn">User Login</a> -->
-        </div>
-    </div>
-  </header>
+{% extends "layout.html" %}
+{% block pagetitle %}Nutrometer{% endblock %}
+{% block bodycontent %}
+
+
+
   <section class="hero-section" data-setbg="../static/images/food.jpg">
    
   </section>
@@ -53,20 +15,21 @@
           <div class="panel panel-default">
             <div class="panel-heading">Filter Search</div>
             <div class="panel-body">
-              <form>
+              <form action = "" target="_blank" method="GET" >
+               
                 <div class="form-group">
                   <ul class="list-group" id="filters">
                     <li class="filter list-group-item">
                       <label for="date">Enter a Date</label>
-                      <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                      <input class="form-control" id="datetime" name="date" type="text" placeholder="1/11/2011" >
                     </li>
                     <li class="filter list-group-item">
-                      <label for="nutrient">Select Nutrients</label>
-                      <select id="selectnutrients">                                         
-                      </select>
+                        <button type="submit" class="register-btn" id="button" >Plot</button>
                     </li>
                   </ul>
+                  
                 </div>
+                
               </form>
             </div>
           </div>
@@ -74,8 +37,18 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <div id ="plot">
+          <div class="col">
+            <div id ="plot1">
+                      
+                                
+            </div>
+            <div id ="plot2">
+                      
+                                
+            </div>
+            <div id ="plot3">
+                      
+                                
             </div>
           </div>
         </div>  
@@ -84,13 +57,35 @@
   </section>
  
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-  <script src="../static/JS/data_dri_macronutrients.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script> 
+
+  <script type="text/javascript">
+
+    var graphs = {{graphJSON | safe}};
+    var ids = {{ids | safe}};
+
+    for(var i in graphs) {
+        Plotly.plot(ids[i], // the ID of the div, created above
+                    graphs[i].data,
+                    graphs[i].layout || {});
+    }
+  </script>
+
+  <!-- <script src="../static/JS/data_dri_macronutrients.js"></script>
   <script src="../static/JS/data_dri_minerals.js"></script>
   <script src="../static/JS/data_dri_vitamins.js" ></script>
   <script src="../static/JS/Required_data_calculate.js" ></script>
   <script src="../static/JS/userdata.js" ></script>
   <script src="../static/JS/plot.js" ></script>
-  <script src="../static/JS/vizualization.js" ></script>
-</body>
-</html>
+  <script src="../static/JS/vizualization_new.js" ></script> -->
+
+
+
+
+  
+
+
+  {% endblock %}
+
