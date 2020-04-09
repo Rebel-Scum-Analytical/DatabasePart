@@ -283,7 +283,7 @@ class RegistrationForm(FlaskForm):
         "Last Name", validators=[InputRequired(), Length(min=2, max=50)]
     )
     gender = SelectField("Gender", choices=[("male", "Male"), ("female", "Female")])
-    date_of_birth = DateField("Bate of Birth (YYYY-MM-DD)", format="%Y-%m-%d")
+    date_of_birth = DateField("Date of Birth (YYYY-MM-DD)", format="%Y-%m-%d")
     height = DecimalField(
         "Height (Inches)",
         places=2,
