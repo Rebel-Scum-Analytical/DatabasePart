@@ -55,6 +55,16 @@
               </ul>
             </nav>
           {% if (('loggedin' not in session) or (session['loggedin'] != True)) and (session['page'] !='register') %}
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <script> 
+                {% for message in messages %}
+                  alert('{{ message }}')
+                {% endfor %}
+              </script>
+              {% endif %}
+            {% endwith %}
+
           <a href="/register" class="primary-btn signup-btn">Create Account</a>
           {% endif %} 
           
